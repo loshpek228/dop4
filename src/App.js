@@ -56,34 +56,36 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Questions</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearch}
-          className="search-input"
-        />
-        <button onClick={toggleSort}>Toggle Sort</button> {/* Кнопка для переключения сортировки */}
+    <>
+      <div className="container">
+        <h1>Questions</h1>
+        <div>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={handleSearch}
+            className="search-input"
+          />
+          <button onClick={toggleSort}>Toggle Sort</button> {/* Кнопка для переключения сортировки */}
+        </div>
+        <ul className="question-list">
+          {filteredQuestions.map(question => (
+            <li key={question.id} className="question-item">
+              <div>
+                <span className="question-id">ID: {question.id}</span>
+                <span className="question-title">Title: {question.title}</span>
+              </div>
+              <img
+                src={question.image}
+                alt={question.title}
+                className="question-image"
+              />
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="question-list">
-        {filteredQuestions.map(question => (
-          <li key={question.id} className="question-item">
-            <div>
-              <span className="question-id">ID: {question.id}</span>
-              <span className="question-title">Title: {question.title}</span>
-            </div>
-            <img
-              src={question.image}
-              alt={question.title}
-              className="question-image"
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
+    </>
   );
 }
 
